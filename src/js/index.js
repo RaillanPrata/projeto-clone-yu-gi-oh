@@ -24,17 +24,32 @@ const btnVoltar = document.getElementById("btn-voltar");
 const cartoes = document.querySelectorAll(".cartao");
 let cartaoAtual = 0;
 
+cartoes.forEach(cartao => {
+  cartao.addEventListener("click", function () {
+    const cartaVirada = cartao.querySelector(".carta-virada");
+
+    // virar o cartão
+    cartao.classList.toggle("virar");
+    //mostrar o fundo da carta
+    cartaVirada.classList.toggle("mostrar-fundo-carta");
+
+    const descricao = cartao.querySelector(".descricao");
+    descricao.classList.toggle("esconder");
+  });
+
+});
+
 // - passo 2 - dar um jeito de identificar o clique do usuário na seta avançar
 btnAvancar.addEventListener("click", function () {
-    if (cartaoAtual === cartoes.length - 1) return;
+  if (cartaoAtual === cartoes.length - 1) return;
 
 
-    // - passo 4 - buscar o cartão que esta selecionado e esconder
-    esconderCartaoSelecionado();
+  // - passo 4 - buscar o cartão que esta selecionado e esconder
+  esconderCartaoSelecionado();
 
-    // - passo 3 - fazer aparecer o próximo cartão da lista
-    cartaoAtual++;
-    mostrarCartao(cartaoAtual);
+  // - passo 3 - fazer aparecer o próximo cartão da lista
+  cartaoAtual++;
+  mostrarCartao(cartaoAtual);
 });
 
 /*
@@ -48,22 +63,22 @@ anterior da lista
 
 
 btnVoltar.addEventListener("click", function () {
-    if (cartaoAtual === 0) return;
+  if (cartaoAtual === 0) return;
 
 
-    esconderCartaoSelecionado();
+  esconderCartaoSelecionado();
 
 
-    cartaoAtual--;
-    mostrarCartao(cartaoAtual);
+  cartaoAtual--;
+  mostrarCartao(cartaoAtual);
 });
 
 function mostrarCartao(cartaoAtual) {
-    cartoes[cartaoAtual].classList.add("selecionado");
+  cartoes[cartaoAtual].classList.add("selecionado");
 }
 
 function esconderCartaoSelecionado() {
-    const cartaoSelecionado = document.querySelector(".selecionado");
-    cartaoSelecionado.classList.remove("selecionado");
+  const cartaoSelecionado = document.querySelector(".selecionado");
+  cartaoSelecionado.classList.remove("selecionado");
 }
 
